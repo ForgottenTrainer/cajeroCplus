@@ -3,6 +3,8 @@
 
 using namespace std;
 
+//ID de servicios 12345
+
 int fondos = 10000;
 int aux, aux1;
 int nip = 2312;
@@ -27,6 +29,7 @@ int cantidad;
 void menu(void);
 void retiros(void);
 void depositos(void);
+void servicios(void);
 
 int main(){
 	
@@ -55,8 +58,9 @@ void menu(void){
 		cout<<"Buen dia en que te podemos ayudar: "<<endl;
 		cout<<"\n";
 		cout<<"Saldo de cuenta: "<<fondos<<endl;
-		cout<<"2. Retiros"<<endl;
-		cout<<"3. Depositos"<<endl;
+		cout<<"1. Retiros"<<endl;
+		cout<<"2. Depositos"<<endl;
+		cout<<"3. Servicios"<<endl;
 		cout<<"4. Salir"<<endl;
 		cout<<"\nDinero en cajero"<<endl;
 		cout<<"Billetes de 500: "<<b500<<endl;
@@ -67,17 +71,18 @@ void menu(void){
 		cin>>opc;
 		switch(opc){
 			case 1:
-				cout<<"Su saldo es: "<<fondos<<endl;
-				system("pause");
-				break;
-			case 2:
 				cout<<"Retiros";
 				retiros();
 				system("pause");
 				break;
-			case 3:
+			case 2:
 				cout<<"Depositos";
 				depositos();
+				system("pause");
+				break;
+			case 3:
+				cout<<"\nServicios"<<endl;
+				servicios();
 				system("pause");
 				break;
 			case 4:
@@ -392,4 +397,99 @@ void depositos(){
 			cout<<"Ingrese una opcion valida"<<endl;
 			break;
 	}		
+}
+
+void servicios(void){
+	char serv = 's';
+	int op, idUser,id = 12345;
+	char deuda;
+	int aguakan = 450, cfe = 500, izzi = 500;
+	
+	while(serv == 's'){
+		cout<<"1. Pagar aguakan"<<endl;
+		cout<<"2. Pagar CFE"<<endl;
+		cout<<"3. Pagar Izzi"<<endl;
+		cout<<"4. Salir"<<endl;
+		cin>>op;
+		switch(op){
+			case 1:
+				cout<<"Ponga su ID de usuario: "<<endl;
+				cin>>idUser;
+				
+				if(idUser == id){
+					cout<<"Su monto a pagar es de "<< aguakan<<endl;
+					cout<<"Desea continuar y/n"<<endl;
+					cin>>deuda;
+					if(deuda == 'y'){
+						if(fondos > aguakan){
+							fondos -= aguakan;
+							aguakan = 0;
+							cout<<"Pago realizado correctamente"<<endl;
+						}else{
+							cout<<"No cuenta con el dinero suficiente: "<<endl;
+						}
+					}else{
+						break;
+					}
+				}
+				else{
+					cout<<"Usuario no encontrado"<<endl;
+				}
+				break;
+			case 2:
+				cout<<"Ponga su ID de usuario: "<<endl;
+				cin>>idUser;
+				
+				if(idUser == id){
+					cout<<"Su monto a pagar es de "<< cfe<<endl;
+					cout<<"Desea continuar y/n"<<endl;
+					cin>>deuda;
+					if(deuda == 'y'){
+						if(fondos > cfe){
+							fondos -= cfe;
+							cfe = 0;
+							cout<<"Pago realizado correctamente"<<endl;
+						}else{
+							cout<<"No cuenta con el dinero suficiente: "<<endl;
+						}
+					}else{
+						break;
+					}
+				}
+				else{
+					cout<<"Usuario no encontrado"<<endl;
+				}
+				break;
+			case 3:
+				cout<<"Ponga su ID de usuario: "<<endl;
+				cin>>idUser;
+				
+				if(idUser == id){
+					cout<<"Su monto a pagar es de "<< izzi<<endl;
+					cout<<"Desea continuar y/n"<<endl;
+					cin>>deuda;
+					if(deuda == 'y'){
+						if(fondos > izzi){
+							fondos -= izzi;
+							izzi = 0;
+							cout<<"Pago realizado correctamente"<<endl;
+						}else{
+							cout<<"No cuenta con el dinero suficiente: "<<endl;
+						}
+					}else{
+						break;
+					}
+				}
+				else{
+					cout<<"Usuario no encontrado"<<endl;
+				}
+				break;
+				
+			case 4:
+				serv = 'n';
+			default:
+				cout<<"Pon una opcion valida: "<<endl;
+				break;
+		}
+	}
 }
